@@ -25,10 +25,9 @@ Redis for daily data and MySQL for API data(//TODO).
 ```
 --
  |/cronjob 定时任务
- |----\|/datacenter 数据中心
- |--------\|/database 数据库数据
- |--------\|/cache 缓存数据
- |----\|/crawler 爬虫中心
+ |---->|/datacenter 数据中心
+ |-------->|/database 数据库数据
+ |-------->|/cache 缓存数据
+ |---->|/crawler 爬虫中心
  |/service //TODO 服务中心
-
  ```

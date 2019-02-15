@@ -4,7 +4,7 @@ import re
 import json
 
 from requests import get
-from util.constant.enum import ENUM_DATATYPE
+from util.constant.enum import *
 from lxml import etree
 
 # Turn &#xxxx; to char.
@@ -21,12 +21,11 @@ class HotkeyFetcher(object):
 
     raw_url = "https://s.weibo.com/top/summary?cate=realtimehot"
 
-    def __init__(self, limit=0, **kwargs):
-        self.limit = limit
+    def __init__(self, **kwargs):
         self.data = None
 
         #TODO
-        #Get extra args from `kwargs`.
+        #Get extra args from `kwargs`. Example: headers.
         self.kwargs = kwargs
 
     @property
@@ -35,13 +34,15 @@ class HotkeyFetcher(object):
         parsed_data = self.__parse_html__(html_data)
         self.data = parsed_data
 
-    def get_data(self, datatype=ENUM_DATATYPE["json"]):
+    def get_data(self, datatype=ENUM_DATATYPE_JSON, limit=0):
         self.__get_data__
+        if limit != 0:
+            self.data = self.data[:limit]
 
-        if datatype == ENUM_DATATYPE["json"]:
+        if datatype == ENUM_DATATYPE_JSON:
             return self.data
 
-        elif datatype == ENUM_DATATYPE["string"]:
+        elif datatype == ENUM_DATATYPE_STRING:
             return json.dumps(self.data)
         else:
             return None

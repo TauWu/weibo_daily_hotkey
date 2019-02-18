@@ -7,6 +7,8 @@ from requests import get
 from util.constant.enum import *
 from lxml import etree
 
+from util.base.time import Time
+
 # Turn &#xxxx; to char.
 def ascii_to_str(ascii_match):
     ascii_data = re.findall(r"[0-9]+", ascii_match.group())[0]
@@ -88,10 +90,11 @@ class HotkeyFetcher(object):
                 hotkey = re.findall("(.+)<img", hotkey_emoji[0])
                 emoji = list()
                 if len(hotkey) == 0:
-                    hotkey = hotkey_emoji
+                    hotkey = hotkey_emoji[0]
                 else:
+                    hotkey = hotkey[0]
                     emoji = re.findall("<img.+alt=\"\[(.+)\]\"", hotkey_emoji[0])
 
-                dict_data_list.append(dict(hotkey=hotkey, flag=flag, amount=amount[0], emoji=emoji))
+                dict_data_list.append(dict(hotkey=hotkey, flag=flag, amount=amount[0], emoji=emoji, time=Time.now_timestamp()))
 
         return dict_data_list

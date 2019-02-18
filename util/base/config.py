@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# base module for config parser.
 
 from configparser import ConfigParser
 
@@ -44,11 +45,3 @@ class ConfigReader(Config):
             return conf.read(k[0])
         else:
             return {ik:conf.read(ik) for ik in k}
-
-class ConfigCenter(object):
-
-    @staticmethod
-    def RedisConfig():
-        k = ['host', 'port']
-        return ConfigReader.read_section_key(path_name='conf', file_name='base.cfg', section_name='base', *k)
-        

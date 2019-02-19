@@ -12,9 +12,9 @@ class FileController(object):
 
     def __init__(self):
         conf = ConfigCenter.FileConfig()
-        self.__path = conf['path']
+        self.__path = conf
 
-    def write_data_md(self, today_hotkeys):
+    def write_data_md(self, today_cache):
         ordered_cache = sort_hotkey_order_by_amount(today_cache)
 
         File.a(self.__path, '--- | --- | --- | --- | ---')

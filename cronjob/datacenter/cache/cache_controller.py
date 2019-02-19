@@ -24,8 +24,7 @@ class CacheController(object):
             self.__update_cache__(new_hotkey_json)
 
     def __update_cache__(self, new_hotkey_json):
-        today_hotkey = self.cache.rget(0)
-        today_hotkey_json = json.loads(today_hotkey)
+        today_hotkey_json = self.get_today_cache()
 
         today_hotkey_dict = dict()
 
@@ -33,8 +32,21 @@ class CacheController(object):
             today_hotkey_dict[hotkey['hotkey']] = hotkey
 
         for new_hotkey in new_hotkey_json:
+
             if new_hotkey['hotkey'] in today_hotkey_dict.keys():
                 if int(new_hotkey['amount']) > int(today_hotkey_dict[new_hotkey['hotkey']]['amount']):
                     today_hotkey_dict[new_hotkey['hotkey']] = new_hotkey
+            else:
+                today_hotkey_dict[new_hotkey['hotkey']] = new_hotkey
 
         self.cache.rset(0, list(today_hotkey_dict.values()))
+
+    def clear_today_cache(self):
+        self.cache.delete(0)
+        
+    def get_today_cache(self):
+        return self.get_cache(0)
+
+    def get_cache(self, timestamp):
+        return json.loads(self.cache.rget(timestamp))
+        

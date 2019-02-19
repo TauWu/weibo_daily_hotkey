@@ -17,7 +17,7 @@ apt-get install redis-server
 ### Python Modules
 ```sh
 pip3 install requests
-pip3 install PyGithub
+pip3 install GitPython
 pip3 install lxml
 pip3 install redis
 ```

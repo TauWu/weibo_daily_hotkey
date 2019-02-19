@@ -57,6 +57,12 @@ class Time(object):
         '''返回标准时间字符串12:13:14'''
         return time.strftime("%H:%M:%S", time.localtime())
 
+class TimeTranslator(object):
+
+    @staticmethod
+    def timestamp2datetime(timestamp):
+        return datetime.datetime.fromtimestamp(timestamp)
+
 class DateTime(object):
 
     @staticmethod

@@ -13,5 +13,9 @@ class ConfigCenter(object):
     def DatabaseConfig():
         k = ['host', 'port', 'user', 'passwd']
         return ConfigReader.read_section_key('conf', 'base.cfg', 'database', *k)
-        
+
+    @staticmethod
+    def FileConfig():
+        k = ['path']
+        return ConfigReader.read_section_key('conf', 'base.cfg', 'file', *k)
         

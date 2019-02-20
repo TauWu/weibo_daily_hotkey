@@ -22,11 +22,11 @@ class GitTool(object):
         conf = ConfigCenter.GitConfig()
         filepath = conf['filepath'].split(',')
         msg = "Auto commit for %s."%(Time.now_date_str())
-        err = self.push(*filepath)
+        err = self.push(msg, *filepath)
         if err is not None:
             print(err)
 
-    def push(self, *filepath, msg):
+    def push(self, msg, *filepath):
 
         try:
             self.__check_status__()

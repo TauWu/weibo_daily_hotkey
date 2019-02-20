@@ -19,3 +19,7 @@ class ConfigCenter(object):
         k = ['path']
         return ConfigReader.read_section_key('conf', 'base.cfg', 'file', *k)
         
+    @staticmethod
+    def GitConfig():
+        k = ['path', 'filepath']
+        return ConfigReader.read_section_key('conf', 'base.cfg', 'git', *k)

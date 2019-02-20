@@ -17,12 +17,12 @@ class Git(object):
     
     @property
     def active_branch(self):
-        return self.__repo.active_branch
+        return "{branch}".format(branch=self.__repo.active_branch)
 
-    def add(self, **path):
+    def add(self, *path):
         self.__index.add(path)
     
-    def remove(self, **path):
+    def remove(self, *path):
         self.__index.remove(path)
 
     def commit(self, msg):
@@ -31,5 +31,5 @@ class Git(object):
     def pull(self):
         self.__remote.pull()
 
-    def pull(self):
+    def push(self):
         self.__remote.push()

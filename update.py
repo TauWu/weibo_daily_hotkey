@@ -7,6 +7,7 @@
 
 from cronjob.datacenter.file.file import FileController
 from cronjob.datacenter.cache.cache_controller import CacheController
+from cronjob.tool.git_tool import GitTool
 
 if __name__ == '__main__':
     cache_controller = CacheController(0)
@@ -20,5 +21,6 @@ if __name__ == '__main__':
     cache_controller.clear_today_cache()
 
     # update data.
-    #TODO
+    git_tool = GitTool()
+    git_tool.push_data()
     

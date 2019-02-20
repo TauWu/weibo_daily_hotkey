@@ -33,11 +33,13 @@ class CacheController(object):
 
         for new_hotkey in new_hotkey_json:
 
-            if new_hotkey['hotkey'] in today_hotkey_dict.keys():
+            new_hotkey_key = new_hotkey['hotkey'].strip()
+
+            if new_hotkey_key in today_hotkey_dict.keys():
                 if int(new_hotkey['amount']) > int(today_hotkey_dict[new_hotkey['hotkey']]['amount']):
-                    today_hotkey_dict[new_hotkey['hotkey']] = new_hotkey
+                    today_hotkey_dict[new_hotkey_key] = new_hotkey
             else:
-                today_hotkey_dict[new_hotkey['hotkey']] = new_hotkey
+                today_hotkey_dict[new_hotkey_key] = new_hotkey
 
         self.cache.rset(0, list(today_hotkey_dict.values()))
 

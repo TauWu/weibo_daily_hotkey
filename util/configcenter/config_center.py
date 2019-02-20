@@ -6,7 +6,7 @@ class ConfigCenter(object):
 
     @staticmethod
     def RedisConfig():
-        k = ['host', 'port']
+        k = ['host', 'port', 'passwd']
         return ConfigReader.read_section_key('conf', 'base.cfg', 'redis', *k)
 
     @staticmethod

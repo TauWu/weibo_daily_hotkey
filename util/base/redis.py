@@ -16,9 +16,10 @@ class Redis(object):
 
         host = self.conf['host']
         port = self.conf['port']
+        passwd = self.conf['passwd']
 
         self.db = db
-        self.__pool = ConnectionPool(host=host, port=port, db=self.db)
+        self.__pool = ConnectionPool(host=host, port=port, db=self.db, password=passwd)
         self.__conn = RawRedis(connection_pool=self.__pool)
         
         print("*** Connect to redis-server succeed.")

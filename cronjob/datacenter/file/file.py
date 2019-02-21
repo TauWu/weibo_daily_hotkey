@@ -17,14 +17,20 @@ class FileController(object):
     def write_data_md(self, today_cache):
         ordered_cache = sort_hotkey_order_by_amount(today_cache)
 
-        File.a(self.__path, '--- | --- | --- | --- | ---')
+        cursor = 2
+
+        insert_data = list()
+
+        insert_data.append('--- | --- | --- | --- | ---')
 
         for data in ordered_cache[0:5]:
 
             datetime = TimeTranslator.timestamp2datetime(data['time'])
 
-            File.a(self.__path, '{date}|{time}|{hotkey}|{amount}|{flag} {emoji}'.format(
+            insert_data.append( '{date}|{time}|{hotkey}|{amount}|{flag} {emoji}'.format(
                 hotkey=data['hotkey'], date=datetime.date(), time=datetime.time(),
                 amount=data['amount'], flag='' if len(data['flag']) == 0 else data['flag'][0], 
                 emoji='' if len(data['emoji']) == 0 else data['emoji'][0],
             ))
+
+        File.i(self.__path, insert_data, cursor)

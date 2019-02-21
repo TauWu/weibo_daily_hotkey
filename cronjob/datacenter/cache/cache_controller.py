@@ -29,14 +29,16 @@ class CacheController(object):
         today_hotkey_dict = dict()
 
         for hotkey in today_hotkey_json:
-            today_hotkey_dict[hotkey['hotkey']] = hotkey
+            k = hotkey['hotkey'].strip()
+            today_hotkey_dict[k] = hotkey
 
         for new_hotkey in new_hotkey_json:
 
             new_hotkey_key = new_hotkey['hotkey'].strip()
 
             if new_hotkey_key in today_hotkey_dict.keys():
-                if int(new_hotkey['amount']) > int(today_hotkey_dict[new_hotkey['hotkey']]['amount']):
+
+                if int(new_hotkey['amount']) > int(today_hotkey_dict[new_hotkey_key]['amount']):
                     today_hotkey_dict[new_hotkey_key] = new_hotkey
             else:
                 today_hotkey_dict[new_hotkey_key] = new_hotkey

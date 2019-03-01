@@ -38,6 +38,29 @@ class Time(object):
         return Time.now_str()
 
     @staticmethod
+    def get_obj_by_formatter_time(formatter, time_obj):
+        return time.strftime(formatter, time_obj)
+
+    @staticmethod
+    def get_now_by_formatter(formatter):
+        return Time.get_obj_by_formatter_time(formatter, time.localtime())
+
+    @staticmethod
+    def now_ymd():
+        return Time.get_now_by_formatter("%Y"), Time.get_now_by_formatter("%m"), Time.get_now_by_formatter("%d")
+
+    @staticmethod
+    def now_hms():
+        return Time.get_now_by_formatter("%H"), Time.get_now_by_formatter("%M"), Time.get_now_by_formatter("%S")
+
+    @staticmethod
+    def lastday_ymd():
+        datetime = DateTime(Time.ISO_date_str())
+        datetime -= 1
+        
+        return (datetime.ISO_date_str.split('-'))
+
+    @staticmethod
     def ISO_str():
         '''返回标准时间字符串 2018-12-12 12:13:14'''
         return time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())

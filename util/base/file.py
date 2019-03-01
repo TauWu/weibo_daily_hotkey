@@ -20,7 +20,7 @@ class File(object):
     @staticmethod
     def w(path, string):
         fix_folder(path)
-        with open(path, 'w') as f:
+        with open(path, 'w+') as f:
             f.write("%s\n"%string)
 
     @staticmethod
@@ -54,4 +54,23 @@ class File(object):
             data.extend(rawData[cursor:])
 
             f.writelines(data)
-            
+
+    @staticmethod
+    def access(path):
+        return os.access(path, 0x000)
+
+    @staticmethod
+    def mkdir(path):
+        os.mkdir(path)
+
+    def __init__(self, filepath):
+        self.file = filepath.split("/")[-1]
+        self.path = "/".join(filepath.split("/")[:-1])
+
+    def move(self, move_path, *new_name):
+        name = self.file
+        if len(new_name) > 0:
+            name = new_name[0]
+        
+        os.rename("%s/%s"%(self.path, self.file), "%s/%s"%(move_path, name))
+    

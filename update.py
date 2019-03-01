@@ -17,10 +17,10 @@ if __name__ == '__main__':
     file_controller = FileController()
     file_controller.write_data_md(today_cache)
     
-    # # clear cache.
-    # cache_controller.clear_today_cache()
+    # clear cache.
+    cache_controller.clear_today_cache()
 
-    # # update data.
-    # git_tool = GitTool()
-    # git_tool.push_data()
+    # update data.
+    git_tool = GitTool()
+    git_tool.push_data()
     

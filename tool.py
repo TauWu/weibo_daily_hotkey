@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-from sys import argv
 from cronjob.datacenter.cache.cache_controller import CacheController
 from cronjob.datacenter.file.file import sort_hotkey_order_by_amount
 from util.base.time import TimeTranslator

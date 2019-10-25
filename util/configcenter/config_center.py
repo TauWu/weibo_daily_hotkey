@@ -23,3 +23,8 @@ class ConfigCenter(object):
     def GitConfig():
         k = ['path', 'filepath']
         return ConfigReader.read_section_key('conf', 'base.cfg', 'git', *k)
+
+    @staticmethod
+    def QYWXConfig():
+        k = ['tokens']
+        return ConfigReader.read_section_key('conf', 'base.cfg', 'qywx', *k).split(",")

@@ -70,7 +70,7 @@ class Redis(object):
 
         for list_detail in lists:
             k = list(list_detail.keys())[0]
-            v = list_detail[key]
+            v = list_detail[k]
             self.rset(k, v)
 
         pipe.execute()
@@ -97,3 +97,18 @@ class Redis(object):
                 pass
         else:
             self.rset(k, v)
+
+    def exists(self, k):
+        return self.__conn.exists(k)
+    
+    def hset(self, k, key, value):
+        return self.__conn.hset(k, key, value)
+
+    def hget(self, k, key):
+        return self.__conn.hget(k, key)
+
+    def hgetall(self, k):
+        return self.__conn.hgetall(k)
+
+    def expire(self, k, expire):
+        return self.__conn.expire(k, expire)

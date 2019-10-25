@@ -28,3 +28,10 @@ class ConfigCenter(object):
     def QYWXConfig():
         k = ['tokens']
         return ConfigReader.read_section_key('conf', 'base.cfg', 'qywx', *k).split(",")
+
+    @staticmethod
+    def MonitorConfig():
+        k = ['keys', 'hot_count']
+        cfg = ConfigReader.read_section_key('conf', 'base.cfg', 'monitor', *k)
+        cfg["keys"] = cfg["keys"].split(",")
+        return cfg

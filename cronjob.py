@@ -61,7 +61,7 @@ if __name__ == "__main__":
             if raw_amount >= int(d["amount"]) - int(cfg["hot_count"]):
                 continue
 
-        robotmsg += f'### 爆！NO.{idx+1}| {hkey} \n 热度: {d["amount"]} 时间: {TimeTranslator.timestamp2datetime(d["time"])}\n'
+            robotmsg += f'### 爆！NO.{idx+1}| {hkey} \n 热度: {d["amount"]} 时间: {TimeTranslator.timestamp2datetime(d["time"])}\n'
 
     if len(robotmsg) > 20:
         sender.send_msg(msg_type=MSG_TYPE_MARKDOWN, content=robotmsg)

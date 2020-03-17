@@ -4,6 +4,11 @@ This repo will get hotkeys for sina weibo, and upload it to this github repo.
 
 本项目会定期从新浪微博中获取热搜关键词，并将数据回传到本项目。
 
+
+## NOTICE
+
+本项目预期会在 [WeiboDaily](https://github.com/trim-troop/weibo_daily) 进行重构，施工中🚧
+
 ## DATA
 
 [Click Here](./data/data.md) to read daily hotkey data.
